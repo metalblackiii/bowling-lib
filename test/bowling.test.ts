@@ -5,15 +5,33 @@ import { scoreInput } from '../src/index'
 const range = (start:number, end:number) => Array.from(Array(end - start + 1).keys()).map(x => x + start);
 
 describe('#scoreInput', () => {
-  const SIMPLE = '15345471819005531226'; // 72
-  test(`simple '${SIMPLE}'`, () => {
-    expect(scoreInput(SIMPLE)).toBe(72)
-  });
+  const testExpected = (name:string, input:string, expected:number) => {
+    test(`${name} '${input}' should score as: ${expected}`, () => {
+      expect(scoreInput(input)).toBe(expected)
+    });
+  }
 
-  const WITH_SPARE = '1/345471819005531226'; // +4+3 => 79
-  test(`with spare '${WITH_SPARE}'`, () => {
-    expect(scoreInput(WITH_SPARE)).toBe(79)
-  });
+  const SIMPLE = '15345471819005531226'; // 72
+
+  testExpected('simple', SIMPLE, 72);
+
+  const SIMPLE_WITH_SPARE = '1/345471819005531226'; // SIMPLE+4+3 => 79
+  testExpected('simple with spare', SIMPLE_WITH_SPARE, 79);
+
+  const WITH_SPARE = '7/000000000000000000'; 
+  testExpected('with spare', WITH_SPARE, 10);
+
+  const WITH_SPARE_SPARE = '8/8/0000000000000000';
+  testExpected('with spare spare', WITH_SPARE_SPARE, 28);
+
+  const WITH_STRIKE = 'x000000000000000000';
+  testExpected('with strike', WITH_STRIKE, 10);
+
+  const WITH_DOUBLE = 'xx00000000000000000';
+  testExpected('with double', WITH_DOUBLE, 30);
+
+  const WITH_TURKEY = 'xxx000000000000000';
+  testExpected('with a turkey', WITH_TURKEY, 60);
 
   const ALL_9_SPARES = '9/9/9/9/9/9/9/9/9/9/';
   // 19 38 57 76 95 114 133 152 171 181
