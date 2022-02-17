@@ -38,7 +38,7 @@ export const scoreInput = (input:string) => {
 
   const throws = getThrows(input);
 
-  // console.log('throws :>> ', throws);
+  console.log('throws :>> ', throws);
 
   let score = 0;
   throws.forEach((t, index) => {
@@ -47,6 +47,7 @@ export const scoreInput = (input:string) => {
     } else if (isSpare(t.raw)) {
       score += t.value;
       const nextThrow = throws[index + 1];
+
       // Check for 10th frame scenario
       const nextNextThrow = throws[index + 2];
       if (!!nextThrow && !!nextNextThrow) {
@@ -57,10 +58,12 @@ export const scoreInput = (input:string) => {
       const nextThrow = throws[index + 1];
       const nextNextThrow = throws[index + 2];
 
-      if (nextThrow) {
+      // Check for 10th frame scenarios
+      const nextNextNexThrow = throws[index + 3];
+      if (!!nextThrow && !!nextNextNexThrow) {
         score += nextThrow.value;
       }
-      if (nextNextThrow) {
+      if (!!nextNextThrow && !!nextNextNexThrow) {
         score += nextNextThrow.value;
       }
     }

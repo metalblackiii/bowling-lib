@@ -33,6 +33,15 @@ describe('#scoreInput', () => {
   const WITH_TURKEY = 'xxx000000000000000';
   testExpected('with a turkey', WITH_TURKEY, 60);
 
+  const A_300_GAME = 'xxxxxxxxxxxx';
+  testExpected('A 300 game', A_300_GAME, 300);
+
+  const A_299_GAME = 'xxxxxxxxxxx9';
+  testExpected('A 299 game', A_299_GAME, 299);
+
+  const TEN_STRIKES_ZEROS = 'xxxxxxxxxx00';
+  testExpected('Ten strikes, then 2 zeros', TEN_STRIKES_ZEROS, 270);
+
   const ALL_9_SPARES = '9/9/9/9/9/9/9/9/9/9/';
   // 19 38 57 76 95 114 133 152 171 181
 
