@@ -54,6 +54,15 @@ export const scoreInput = (input:string) => {
       }
     } else if (isStrike(t.raw)) {
       score += 10;
+      const nextThrow = throws[index + 1];
+      const nextNextThrow = throws[index + 2];
+
+      if (nextThrow) {
+        score += nextThrow.value;
+      }
+      if (nextNextThrow) {
+        score += nextNextThrow.value;
+      }
     }
   });
   return score;
