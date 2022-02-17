@@ -1,0 +1,24 @@
+{
+  "name": "@metalblack/bowling-lib",
+  "version": "0.0.1",
+  "description": "",
+  "files": [
+    "lib",
+    "package.json"
+  ],
+  "main": "lib/index.js",
+  "module": "lib/index.esm.js",
+  "browser": "lib/index.umd.js",
+  "scripts": {
+    "build": "rollup -c",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "rollup": "^2.67.2",
+    "rollup-plugin-typescript2": "^0.31.2",
+    "typescript": "^4.5.5"
+  }
+}
