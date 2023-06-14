@@ -3,7 +3,9 @@ const isSpare = (x:string) => x === '/';
 const isStrike = (x:string) => x === 'x';
 
 const getValue = (x:string) => {
-  if (isStrike(x)) return 10;
+  if (isStrike(x)) {
+    return 10;
+  }
   // TODO: handle invalid input
   return Number(x);
 };
@@ -14,7 +16,10 @@ const getThrows = (input:string) => {
   const throws = asArray.map((raw, index) => {
     if (isSpare(raw)) {
       const prev = asArray[index - 1];
-      if (!prev) throw new Error(`Invalid input at ${index}`);
+      /* istanbul ignore next */
+      if (!prev) {
+        throw new Error(`Invalid input at ${index}`);
+      }
       return {
         raw,
         value: 10 - getValue(prev),
@@ -23,7 +28,7 @@ const getThrows = (input:string) => {
     if (isStrike(raw)) {
       return {
         raw,
-        value: 10,
+        value: getValue(raw),
       };
     }
     return {
